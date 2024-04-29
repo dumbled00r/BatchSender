@@ -3,7 +3,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import SendSection from '../components/SendSection';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -19,6 +20,18 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <ConnectButton />
         <SendSection />
+        <ToastContainer
+        position="top-center"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"></ToastContainer>
+        
+
         
       </main>
 
@@ -27,7 +40,9 @@ const Home: NextPage = () => {
           Made with ❤️ by @dumbled00r
         </a>
       </footer>
+      
     </div>
+    
   );
 };
 

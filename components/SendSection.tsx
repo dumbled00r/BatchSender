@@ -46,7 +46,6 @@ const SendSection = () => {
           chainId: chainId,
           value: total
         }) 
-        toast.info('Please confirm in your wallet!');
       }
       catch (error) {
         toast.error('Something went wrong!');
@@ -56,12 +55,20 @@ const SendSection = () => {
 
     async function sendEtherDifferentAmount() {
       if (!address) {
-        toast.error('Please connect your wallet!');
+        toast.error('Please connect your wallet!', {
+          autoClose: 3000
+        });
         return;
       }
       try {
       let total = BigInt(0);
       let amountList = amount.split('\n')
+      if (amountList.length !== addresses.split('\n').length) {
+        toast.error('Addresses and amounts should have same length', {
+          autoClose: 3000
+        });
+        return;
+      }
       let amountListFinal = []
       for (let i = 0; i < amountList.length; i++) {
           total += ethers.parseEther(amountList[i]);
@@ -75,17 +82,20 @@ const SendSection = () => {
         chainId: chainId,
         value: total
       }) 
-      toast.info('Please confirm in your wallet!');
     }
     catch (error) {
-      toast.error('Something went wrong!');
+      toast.error('Something went wrong!', {
+        autoClose: 3000
+      });
+      return;
     }
   } 
     
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
     useWaitForTransactionReceipt({ 
       hash, 
-    }) 
+    }
+  ) 
     
     return (
       <>
@@ -151,14 +161,13 @@ const SendSection = () => {
             </>}
 
             {hash && <div>Transaction Hash: {hash}</div>} 
-            {isConfirming && <div>Waiting for confirmation...</div>} 
-            {isConfirmed && <div>Transaction confirmed.</div>} 
-            {error && ( 
-        <div>Error: {(error as BaseError).shortMessage || error.message}</div> 
-      )} 
+            {isConfirming && <div style={{marginTop : '20px', color: 'rgb(173, 216, 230)'}}>Waiting for confirmation...</div>}
+            {isConfirmed && <div style={{marginTop : '20px', color: 'rgb(54, 180, 34)'}}>Transaction confirmed.</div>}
+            {error && <div style={{color: 'rgb(255, 182, 193)'}}>Error: {(error as BaseError).shortMessage || error.message}</div>}
+      {(transferMode === 'tokenSameAmount'|| transferMode === 'tokenDifferentAmount') &&
+      <h1>Coming soon...</h1>}
       <ToastContainer
         position="top-center"
-        autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

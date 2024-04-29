@@ -5,13 +5,13 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import {
-
+  mainnet,
   ancient8,
   base,
   kroma,
   scroll,
   sepolia,
-  zkSync,
+  optimism
 } from 'wagmi/chains';
 import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
@@ -27,15 +27,12 @@ const config = getDefaultConfig({
       
     }, 
     base,
-    {...kroma,
-      iconBackground: '#FFD700',
-      iconUrl:"https://avatars.githubusercontent.com/u/126645000?v=4"
-    },
+    optimism,
     {...scroll,
       iconBackground: '#FFD700',
       iconUrl:"https://pbs.twimg.com/profile_images/1696531511519150080/Fq5O0LeN_400x400.jpg"
     },
-    zkSync,
+    mainnet,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
   ],
   ssr: true,
