@@ -5,15 +5,16 @@ import { SUPPORT_CHAIN_IDS } from '../utils/enums';
 import { DISPERSE_ADDRESS } from '../utils/constant';
 import DisperseABI from '../utils/abi/Disperse.json';
 import ERC20 from '../utils/abi/ERC20.json';
-import styles from '../styles/Home.module.css';
-import { group } from 'console';
+import styles from '../styles/SendSection.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SendSection = () => {
     const [amount, setAmount] = useState<string>('');
     const [addresses, setAddresses] = useState<string>('');
     const [transferMode, setTransferMode] = useState<string>('etherSameAmount');
     const chainId = useChainId();
-
+    const address = useAccount();
     const { 
         data: hash,    
         error, 
@@ -26,6 +27,11 @@ const SendSection = () => {
     }
 
     async function sendEtherSameAmount() {
+      if (!address) {
+        toast.error('Please connect your wallet!');
+        return;
+      }
+      try {
         let total = BigInt(0);
         let amountList = [];
         for (let i = 0; i < addresses.split('\n').length; i++) {
@@ -40,9 +46,20 @@ const SendSection = () => {
           chainId: chainId,
           value: total
         }) 
+        toast.info('Please confirm in your wallet!');
+      }
+      catch (error) {
+        toast.error('Something went wrong!');
+        return;
+      }
     } 
 
     async function sendEtherDifferentAmount() {
+      if (!address) {
+        toast.error('Please connect your wallet!');
+        return;
+      }
+      try {
       let total = BigInt(0);
       let amountList = amount.split('\n')
       let amountListFinal = []
@@ -58,6 +75,11 @@ const SendSection = () => {
         chainId: chainId,
         value: total
       }) 
+      toast.info('Please confirm in your wallet!');
+    }
+    catch (error) {
+      toast.error('Something went wrong!');
+    }
   } 
     
     const { isLoading: isConfirming, isSuccess: isConfirmed } = 
@@ -87,7 +109,7 @@ const SendSection = () => {
                     onChange={(e) => {
                       setAddresses(e.target.value);
                     } }
-                    className={styles.textarea}>
+                    className={styles.textarea1}>
                     </textarea>
                     <input
                     name='amount'
@@ -97,15 +119,14 @@ const SendSection = () => {
                       setAmount(e.target.value);
                     } }
                     className={styles.inputbox}>
-                      
                     </input>
 
-              <button onClick={sendEtherSameAmount}>Send</button>
+              <button onClick={sendEtherSameAmount} className={styles['button-3']}>Send</button>
             </>
             }
             {transferMode === 'etherDifferentAmount' &&
             <>
-            <div>
+           <div className={styles.container}>
               <textarea
                 name='addresses'
                 value={addresses}
@@ -113,8 +134,7 @@ const SendSection = () => {
                 onChange={(e) => {
                   setAddresses(e.target.value);
                 }}
-                className={styles.textarea}
-
+                className={`${styles.textarea} ${styles.addresses}`}
               ></textarea>
               <textarea
                 name='amount'
@@ -123,11 +143,11 @@ const SendSection = () => {
                 onChange={(e) => {
                   setAmount(e.target.value);
                 }}
-                className={styles.textarea}
+                className={`${styles.textarea} ${styles.amount}`}
               ></textarea>
             </div>
             <br></br>
-            <button onClick={sendEtherDifferentAmount}>Send</button>
+            <button onClick={sendEtherDifferentAmount} className={styles['button-3']}>Send</button>
             </>}
 
             {hash && <div>Transaction Hash: {hash}</div>} 
@@ -136,6 +156,17 @@ const SendSection = () => {
             {error && ( 
         <div>Error: {(error as BaseError).shortMessage || error.message}</div> 
       )} 
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"></ToastContainer>
       </>
     )
 }

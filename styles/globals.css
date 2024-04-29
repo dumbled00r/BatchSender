@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+nextjs-portal {
+  display: none;
+}
