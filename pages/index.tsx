@@ -22,8 +22,8 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://rainbow.me" rel="noopener noreferrer" target="_blank">
-          Made with ❤️ by @dumbled00rz 
+        <a href="https://t.me/znfeau" rel="noopener noreferrer" target="_blank">
+          Made with ❤️ by @dumbled00r
         </a>
       </footer>
     </div>
