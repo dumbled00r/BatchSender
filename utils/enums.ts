@@ -6,5 +6,6 @@ export enum SUPPORT_CHAIN_IDS {
     SCROLL = 534352 , // Scroll mainnet
     ETHEREUM = 1, // Ethereum mainnet
     ANCIENT8 = 888888888, // Ancient8 mainnet
+    ALIENX = 10241025, // AlienX testnet
   }
   

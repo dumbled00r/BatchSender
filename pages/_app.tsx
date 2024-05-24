@@ -15,6 +15,28 @@ import {
 } from 'wagmi/chains';
 import { darkTheme, getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
+import { defineChain } from 'viem';
+
+export const alienXTestnet = /*#__PURE__*/ defineChain({
+  id: 10241025,
+  name: 'AlienX Testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ether',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: { http: ['https://hal-rpc.alienxchain.io/http'] },
+  },
+  blockExplorers: {
+    default: {
+      name: 'Halscan',
+      url: 'https://hal-explorer.alienxchain.io',
+      apiUrl: 'https://hal.explorer.caldera.xyz/api/v2',
+    },
+  },
+  testnet: true,
+})
 
 const config = getDefaultConfig({
   appName: 'RainbowKit App',
@@ -34,6 +56,10 @@ const config = getDefaultConfig({
     },
     mainnet,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
+    {...alienXTestnet,
+      iconBackground: '#FFD700',
+      iconUrl:"https://pbs.twimg.com/profile_images/1766021625194201088/uZ979d7D_400x400.jpg"
+    }
   ],
   ssr: true,
 });
