@@ -7,5 +7,6 @@ export enum SUPPORT_CHAIN_IDS {
     ETHEREUM = 1, // Ethereum mainnet
     ANCIENT8 = 888888888, // Ancient8 mainnet
     ALIENX = 10241025, // AlienX testnet
+    ARBITRUM = 42161, // Arbitrum mainnet
   }
   
