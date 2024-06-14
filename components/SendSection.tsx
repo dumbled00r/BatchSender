@@ -23,17 +23,7 @@ const SendSection = () => {
     const chainId = useChainId()
     const address = useAccount()
     const { data: hash, error, writeContractAsync } = useWriteContract()
-    async function handlerTokenChange(event: {
-        target: { value: React.SetStateAction<string> }
-    }) {
-        setTokenAddress(event.target.value)
-        let symbolToken = await useReadContract({
-            address: tokenAddress,
-            abi: ERC20,
-            functionName: 'symbol',
-            chainId: chainId,
-        })
-    }
+
     const handleTransferModeChange = (event: {
         target: { value: React.SetStateAction<string> }
     }) => {
