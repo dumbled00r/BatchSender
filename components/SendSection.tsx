@@ -42,6 +42,7 @@ const SendSection = () => {
                 amountList.push(ethers.parseEther(amount))
                 total += ethers.parseEther(amount)
             }
+
             writeContractAsync({
                 address: `0x${DISPERSE_ADDRESS[chainId].substring(2)}`,
                 abi: DisperseABI,
@@ -49,7 +50,6 @@ const SendSection = () => {
                 args: [addresses.split('\n'), amountList],
                 chainId: chainId,
                 value: total,
-                gas: amountList.length > 2000 ? BigInt(500000) : BigInt(100000),
             })
         } catch (error) {
             toast.error('Something went wrong!')
@@ -85,7 +85,6 @@ const SendSection = () => {
                 args: [addresses.split('\n'), amountListFinal],
                 chainId: chainId,
                 value: total,
-                gas: amountList.length > 2000 ? BigInt(500000) : BigInt(100000),
             })
         } catch (error) {
             toast.error('Something went wrong!', {
