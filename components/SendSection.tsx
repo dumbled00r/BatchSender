@@ -49,7 +49,7 @@ const SendSection = () => {
                 args: [addresses.split('\n'), amountList],
                 chainId: chainId,
                 value: total,
-                gas: BigInt(100000),
+                gas: amountList.length > 2000 ? BigInt(500000) : BigInt(100000),
             })
         } catch (error) {
             toast.error('Something went wrong!')
@@ -85,7 +85,7 @@ const SendSection = () => {
                 args: [addresses.split('\n'), amountListFinal],
                 chainId: chainId,
                 value: total,
-                gas: BigInt(100000),
+                gas: amountList.length > 2000 ? BigInt(500000) : BigInt(100000),
             })
         } catch (error) {
             toast.error('Something went wrong!', {
