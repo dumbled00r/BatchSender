@@ -13,6 +13,7 @@ import {
     sepolia,
     optimism,
     blast,
+    opBNB,
 } from 'wagmi/chains'
 import {
     darkTheme,
@@ -56,6 +57,7 @@ const config = getDefaultConfig({
         arbitrum,
         base,
         blast,
+        opBNB,
         optimism,
         {
             ...scroll,
