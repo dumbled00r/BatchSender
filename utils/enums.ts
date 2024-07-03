@@ -9,5 +9,6 @@ export enum SUPPORT_CHAIN_IDS {
     ALIENX = 10241025, // AlienX testnet
     ARBITRUM = 42161, // Arbitrum mainnet
     BLAST = 81457, // Blast mainnet
+    OPBNB = 204, // OPBNB mainnet
   }
   
