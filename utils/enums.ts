@@ -10,5 +10,6 @@ export enum SUPPORT_CHAIN_IDS {
     ARBITRUM = 42161, // Arbitrum mainnet
     BLAST = 81457, // Blast mainnet
     OPBNB = 204, // OPBNB mainnet
+    TAIKO = 167000, // Taiko mainnet
   }
   
