@@ -15,6 +15,7 @@ import {
     blast,
     opBNB,
     taiko,
+    plumeTestnet,
 } from 'wagmi/chains'
 import {
     darkTheme,
@@ -58,6 +59,7 @@ const config = getDefaultConfig({
         arbitrum,
         base,
         blast,
+        plumeTestnet,
         opBNB,
         optimism,
         {

@@ -11,5 +11,6 @@ export enum SUPPORT_CHAIN_IDS {
     BLAST = 81457, // Blast mainnet
     OPBNB = 204, // OPBNB mainnet
     TAIKO = 167000, // Taiko mainnet
+    PLUMETESTNET = 161221135, // Plume testnet
   }
   
