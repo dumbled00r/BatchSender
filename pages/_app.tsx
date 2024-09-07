@@ -70,6 +70,7 @@ const config = getDefaultConfig({
         },
         taiko,
         mainnet,
+        sepolia,
         ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
             ? [sepolia]
             : []),
