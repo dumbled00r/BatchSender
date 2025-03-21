@@ -16,6 +16,7 @@ import {
     opBNB,
     taiko,
     plumeTestnet,
+    cyber
 } from 'wagmi/chains'
 import {
     darkTheme,
@@ -70,6 +71,7 @@ const config = getDefaultConfig({
         },
         taiko,
         mainnet,
+        cyber,
         sepolia,
         ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'
             ? [sepolia]

@@ -12,5 +12,6 @@ export enum SUPPORT_CHAIN_IDS {
     OPBNB = 204, // OPBNB mainnet
     TAIKO = 167000, // Taiko mainnet
     PLUMETESTNET = 161221135, // Plume testnet
+    CYBER = 7560,
   }
   
