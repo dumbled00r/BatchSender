@@ -16,7 +16,8 @@ import {
     opBNB,
     taiko,
     plumeTestnet,
-    cyber
+    cyber,
+    bsc
 } from 'wagmi/chains'
 import {
     darkTheme,
@@ -70,6 +71,7 @@ const config = getDefaultConfig({
                 'https://pbs.twimg.com/profile_images/1696531511519150080/Fq5O0LeN_400x400.jpg',
         },
         cyber,
+        bsc,
         mainnet,
         sepolia,
         ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true'

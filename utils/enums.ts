@@ -13,5 +13,6 @@ export enum SUPPORT_CHAIN_IDS {
     TAIKO = 167000, // Taiko mainnet
     PLUMETESTNET = 161221135, // Plume testnet
     CYBER = 7560,
+    BSC = 56
   }
   
